@@ -50,7 +50,7 @@
             <label for="codigo">Validar CNPJ</label>
             <input type="text" class="form-control" id="codigo_add" placeholder="Digite o CNPJ">
         </div>
-        <button type="button" class="btn btn-primary" onclick="add_product()">Validar</button>
+        <button type="button" class="btn btn-primary" onclick="valid_cnpj()">Validar</button>
     </div>
 
 </div>
@@ -65,13 +65,37 @@
     </div>
 </footer>
 <!-- Footer -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7.1.0/dist/promise.min.js"></script>
 <script src="{{asset("js/jquery-3.2.1.min.js")}} "></script>
 <script src="{{asset("js/popper.min.js")}}"></script>
 <script src="{{asset("js/bootstrap.min.js")}}"></script>
 <script src="{{asset("js/main.js")}}"></script>
 <script src="{{asset("js/plugins/pace.min.js")}}"></script>
 <script src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
+
+<script>
+    function valid_cnpj() {
+        let cnpj = $('#codigo_add').val();
+        $.ajax({
+            url:'{{route('valid')}}',
+            type: 'POST',
+            data: {"_token": "{{ csrf_token() }}", "cnpj": cnpj},
+            dataType: 'json',
+
+            success: function (json) {
+                if(json!=null){
+                    swal("Parabéns", "CNPJ Está Associado", "success")
+                }else{
+                    swal({
+                        title: "Ops...",
+                        text: "CNPJ Não Está Associado",
+                        type: "warning",
+                    });
+                }
+            },
+        });
+    }
+</script>
 
 </body>
 </html>

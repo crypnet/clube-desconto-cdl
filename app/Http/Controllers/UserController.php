@@ -28,7 +28,16 @@ class UserController extends Controller
     public function index()
     {
         $user = config('roles.models.defaultUser')::find(Auth()->user()->id);
-        $users = $this->userRepository->paginate(15);
+
+        if($user->hasRole('admin')){
+            $users = $this->userRepository->where('role_id',3,'<=')->paginate(15);
+        }else if($user->hasRole('user')){
+            $users = $this->userRepository->where('role_id',2,'<=')->where('role_id',2,'=')->paginate(15);
+        }else if($user->hasRole('unverified')){
+            $users = $this->userRepository->where('role_id',3,'=')->paginate(15);
+        }else{
+            $users = $this->userRepository->paginate(15);
+        }
         return view('panel.user.index')->with(compact([
             'users',
         ]));
@@ -107,8 +116,6 @@ class UserController extends Controller
     public function update(UserUpdate $request, $id)
     {
         $validated = $request->validated();
-        $user = config('roles.models.defaultUser')::find($id);
-        $user->detachAllRoles();
         $this->userRepository->deleteById($id);
         $userf = config('roles.models.defaultUser')::create($this->values($request, 'store'));
         $userf->attachRole($request->input('role'));
@@ -137,6 +144,7 @@ class UserController extends Controller
         $values = [
             'name'    => $request->input('name'),
             'email'   => $request->input('email'),
+            'role_id' => $request->input('role'),
         ];
         if ($type == 'store') {
             $values['password'] = bcrypt($request->input('password'));

@@ -36,3 +36,5 @@ Route::resource('users','UserController')->middleware('permission:users.index');
 Route::resource('roles','RoleController')->middleware('permission:users.index');
 
 Route::resource('customer','CustomerController')->middleware('permission:users.index');
+
+Route::post('/valid','CustomerController@valid')->name('valid');

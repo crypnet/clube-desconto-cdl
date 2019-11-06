@@ -130,7 +130,6 @@ function isHelperNull($parameter)
 function hierarchy()
 {
     $user = config('roles.models.defaultUser')::find(Auth()->user()->id);
-
     if($user->hasRole('admin')){
         $not_in = [
             'root',

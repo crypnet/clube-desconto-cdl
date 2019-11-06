@@ -69,21 +69,21 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="cnpj_cpf"
+                                            <label for="cnpj"
                                                    class="control-label">
                                                 @lang('panel.customer_prospects.cnpj_cpf')
                                             </label>
-                                            <input class="form-control {{ $errors->has('cnpj_cpf') ? 'is-invalid' : '' }} cnpj_cpf"
+                                            <input class="form-control {{ $errors->has('cnpj') ? 'is-invalid' : '' }} cnpj_cpf"
                                                    type="text"
-                                                   id="cnpj_cpf"
+                                                   id="cnpj"
                                                    placeholder="@lang('panel.customer_prospects.cnpj_cpf')"
-                                                   value="{{ old('cnpj_cpf') }}"
-                                                   name="cnpj_cpf"
+                                                   value="{{ old('cnpj') }}"
+                                                   name="cnpj"
                                                    data-inputmask='"mask": "999.999.999-99"'
                                                    data-mask/>
-                                            @if ($errors->has('cnpj_cpf'))
+                                            @if ($errors->has('cnpj'))
                                                 <div class="form-control-feedback">
-                                                    <strong>{{ $errors->first('cnpj_cpf') }}</strong>
+                                                    <strong>{{ $errors->first('cnpj') }}</strong>
                                                 </div>
                                             @endif
                                         </div>

@@ -6,17 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    protected $attributes =[
-        'status'=> false,
-    ];
     protected $fillable = [
         'id',
         'fantasy_name',
         'reason_name',
         'cnpj',
+        'status'
 
-    ];
-    protected $casts = [
-        'status'=>'boolean'
     ];
 }

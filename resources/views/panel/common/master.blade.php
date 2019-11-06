@@ -49,6 +49,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
+                <div class="col-md-12 text-center">
+                    @include('flash::message')
+                </div>
                 @yield('content')
             </div>
         </div>
@@ -63,11 +66,14 @@
     </div>
 </footer>
 <!-- Footer -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{asset("js/jquery-3.2.1.min.js")}} "></script>
 <script src="{{asset("js/popper.min.js")}}"></script>
 <script src="{{asset("js/bootstrap.min.js")}}"></script>
 <script src="{{asset("js/main.js")}}"></script>
 <script src="{{asset("js/plugins/pace.min.js")}}"></script>
+<script src="{{ asset('js/plugins/sweetalert.min.js') }}"></script>
+
 </body>
 </html>
 

@@ -10,12 +10,16 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "6.0.*",
+        "jason-guru/laravel-make-repository": "^0.0.1",
+        "jeremykenedy/laravel-roles": "^2.3",
+        "laracasts/flash": "^3.0",
+        "laravel/framework": "5.8.*",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^1.0",
         "laravel/ui": "^1.0",
-        "sentry/sentry-laravel": "1.2.0",
-        "spatie/laravel-permission": "^3.0"
+        "ozankurt/repoist": "^3.2",
+        "santigarcor/laratrust": "5.0.*",
+        "sentry/sentry-laravel": "1.2.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -36,8 +40,12 @@
         }
     },
     "autoload": {
+        "files": [
+            "app/Helpers/Functions.php"
+        ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "App\\Models\\": "app/Models/"
         },
         "classmap": [
             "database/seeds",
